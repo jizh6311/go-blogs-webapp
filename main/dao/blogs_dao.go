@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"errors"
 	"log"
 
 	"../models"
@@ -31,6 +32,14 @@ func (m *BlogsDAO) Connect() {
 func (m *BlogsDAO) Insert(blog *models.Blog) error {
 	err := db.C(COLLECTION).Insert(blog)
 	return err
+}
+
+func (m *BlogsDAO) Mock_Success_Insert(blog *models.Blog) error {
+	return nil
+}
+
+func (m *BlogsDAO) Mock_Failure_Insert(blog *models.Blog) error {
+	return errors.New("Insertion failed")
 }
 
 func (m *BlogsDAO) Find(username string) (error, []*models.Blog) {
