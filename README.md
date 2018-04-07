@@ -22,9 +22,9 @@ etc
 2. Start local MongoDB. The default .exe file is at ../MongoDB/Server/3.4/bin/mongod.exe
 3. Go to <project_directory>/main and run ```go run app.go``` to start the web app on localhost:8000
 4. Go to <project_directory>/test and run ```go test ./...``` can execute all unit tests. Run ```go test``` under each test folder can 
-every single test class
+execute every single test class
 
-## Go Echo Frameword Document
+## Go Echo Framework Document
 https://echo.labstack.com/
 
 ## Other Suggestions
