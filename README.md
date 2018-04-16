@@ -6,7 +6,7 @@ This is a web app written in Go echo framework
    - Set Environment on Windows:
      - GOROOT: Go installation directory. C:\Go
      - GOPATH: Your preferred directory for multiple Go projects
-     - GOBIN: <GOROOT>\bin
+     - GOBIN: <YOUR_GOROOT>\bin
 
 ## Install MongoDB
    - https://www.mongodb.com/download-center#community
