@@ -20,7 +20,7 @@ This is a web app written in Go echo framework
    - For more information, please refer https://glide.readthedocs.io/en/latest/
 
 ## Project Setup
-1. Clone this project under <Your_GOPATH>/src/<Project_Name>. Run ```glide install``` to install all packages in the vendor folder. To install new packages, run ```glide get <package>```
+1. Clone this project under <Your_GOPATH>/src/go-blogs-webapp. Run ```glide install``` to install all packages in the vendor folder. To install new packages, run ```glide get <package>```
 2. Start local MongoDB. The default .exe file is at ../MongoDB/Server/3.4/bin/mongod.exe
 3. Under <project_directory>, run ```go run app.go``` to start the web app on localhost:8000
 4. Go to <project_directory>/test and run ```go test ./...``` can execute all unit tests. Run ```go test``` under each test folder can 
