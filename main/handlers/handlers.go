@@ -3,8 +3,10 @@ package handlers
 import (
 	"net/http"
 
-	"../dao"
-	"../models"
+	"go-blogs-webapp/main/dao"
+
+	"go-blogs-webapp/main/models"
+
 	"github.com/labstack/echo"
 	"gopkg.in/mgo.v2/bson"
 )

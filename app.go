@@ -1,9 +1,12 @@
 package main
 
 import (
-	"./config"
-	"./dao"
-	"./handlers"
+	"go-blogs-webapp/main/config"
+
+	"go-blogs-webapp/main/dao"
+
+	"go-blogs-webapp/main/handlers"
+
 	"github.com/labstack/echo"
 )
 
@@ -19,7 +22,7 @@ func init() {
 func main() {
 	e := echo.New()
 
-	e.File("/", "public/index.html")
+	e.File("/", "main/public/index.html")
 
 	e.GET("/blogs/:username", handlers.GetBlogs)
 	e.POST("/blogs", handlers.PostBlogs)

@@ -4,7 +4,8 @@ import (
 	"errors"
 	"log"
 
-	"../models"
+	"go-blogs-webapp/main/models"
+
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )

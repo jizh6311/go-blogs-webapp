@@ -1,0 +1,11 @@
+package: go-blogs-webapp
+import:
+- package: github.com/BurntSushi/toml
+- package: github.com/labstack/echo
+- package: gopkg.in/mgo.v2
+  subpackages:
+  - bson
+testImport:
+- package: github.com/stretchr/testify
+  subpackages:
+  - assert
