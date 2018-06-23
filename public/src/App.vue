@@ -1,7 +1,13 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <div id="appHeader">
+      <h1>Welcome to your blogs!</h1>
+    </div>
+    <v-tabs left color='grey lighten-4'>
+      <v-tab :to="{path:'/'}">View Blogs</v-tab>
+      <v-tab :to="{path:'/postBlogs'}">Post Blogs</v-tab>
+    </v-tabs>
+    <router-view />
   </div>
 </template>
 
