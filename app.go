@@ -22,8 +22,6 @@ func init() {
 func main() {
 	e := echo.New()
 
-	e.File("/", "main/public/index.html")
-
 	e.GET("/blogs/:username", handlers.GetBlogs)
 	e.POST("/blogs", handlers.PostBlogs)
 
@@ -31,5 +29,7 @@ func main() {
 	// e.PUT("/blogs", handlers.PutBlogs(db))
 	// e.DELETE("/blogs/:id", handlers.DeleteBlogs(db))
 
-	e.Logger.Fatal(e.Start(":8000"))
+	//Use npm and go CLI to start frontend and backend services seperately.
+	//Then use proxy in package.json
+	e.Logger.Fatal(e.Start(":8081"))
 }
