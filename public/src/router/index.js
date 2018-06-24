@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
 import ViewBlogs from '@/components/ViewBlogs'
 import PostBlogs from '@/components/PostBlogs'
 

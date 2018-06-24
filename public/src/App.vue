@@ -3,7 +3,7 @@
     <div id="appHeader">
       <h1>Welcome to your blogs!</h1>
     </div>
-    <v-tabs left color='grey lighten-4'>
+    <v-tabs fixed-tabs color="cyan" dark slider-color="yellow">
       <v-tab :to="{path:'/'}">View Blogs</v-tab>
       <v-tab :to="{path:'/postBlogs'}">Post Blogs</v-tab>
     </v-tabs>
@@ -25,5 +25,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+#appHeader {
+  margin-bottom: 5%;
 }
 </style>

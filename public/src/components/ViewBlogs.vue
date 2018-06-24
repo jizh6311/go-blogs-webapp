@@ -18,6 +18,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1, h2 {
+  margin-top: 10%;
+  font-size: 20px;
   font-weight: normal;
 }
 ul {
