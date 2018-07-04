@@ -23,7 +23,7 @@ func GetBlogs(c echo.Context) (err error) {
 }
 
 func PostBlogs(c echo.Context) (err error) {
-	blog := &models.Blog{ID: bson.NewObjectId()}
+	blog := &models.BlogJson{ID: bson.NewObjectId()}
 
 	if err = c.Bind(blog); err != nil {
 		return
