@@ -4,14 +4,15 @@ This is a web app written in Go echo framework for backend and VueJS for fronten
 ## Install GO
    - https://golang.org/dl/ version:1.10
    - Set Environment on Windows:
-     - GOROOT: Go installation directory. C:\Go. MAC: "/usr/local/go"
-     - GOPATH: Your preferred directory for multiple Go projects
-     - GOBIN: <YOUR_GOROOT>\bin
+     - GOROOT: Go installation directory. C:/Go. MAC: "/usr/local/go"
+     - GOPATH: Your preferred directory for multiple Go projects. The correct path for Glide tool looks 
+     like: <GOPATH>/src/<project_directory>/vendor/... (It is tricky ...)
+     - GOBIN: <YOUR_GOROOT>/bin
 
 ## Install MongoDB
    - https://www.mongodb.com/download-center#community. On Mac, you can do ```brew install mongodb``` to install
    - MongoDB Compass is very helpful: https://www.mongodb.com/products/compass
-   - Create a folder for local MongoDB data. The default directory is C:\data. On Mac: /data/db
+   - Create a folder for local MongoDB data. The default directory is C:/data. On Mac: /data/db
    
 ## Install Glide
    - Glide is a package manager for Go language. The version must be 0.12.3 on windows. The new version is OK on Mac
