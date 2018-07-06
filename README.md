@@ -6,7 +6,7 @@ This is a web app written in Go echo framework for backend and VueJS for fronten
    - Set Environment on Windows:
      - GOROOT: Go installation directory. C:/Go. MAC: "/usr/local/go"
      - GOPATH: Your preferred directory for multiple Go projects. The correct path for Glide tool looks 
-     like: <GOPATH>/src/<project_directory>/vendor/... (It is tricky ...)
+     like: GOPATH/src/<project_directory>/vendor/... (It is tricky ...)
      - GOBIN: <YOUR_GOROOT>/bin
 
 ## Install MongoDB
