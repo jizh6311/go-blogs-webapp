@@ -66,21 +66,36 @@ func UploadImage(blog *models.BlogJson) error {
 	return nil
 }
 
-func (m *BlogsDAO) Mock_Success_Insert(blog *models.BlogJson) error {
-	return nil
-}
-
-func (m *BlogsDAO) Mock_Failure_Insert(blog *models.BlogJson) error {
-	return errors.New("Insertion failed")
-}
-
 func (m *BlogsDAO) Find(username string) (error, []*models.BlogMeta) {
 	blogs := []*models.BlogMeta{}
 	err := db.C(COLLECTION).Find(bson.M{"Username": username}).All(&blogs)
 	return err, blogs
 }
 
-func RetriveImage(blog *models.BlogMeta) error {
+func (m *BlogsDAO) RetriveImage(ID string) (error, string) {
+	//TODO: Able to open multiple types of files
+	file, findErr := db.GridFS("fs").Open(ID + ".jpg")
+	if findErr != nil {
+		return findErr, ""
+	}
 
+	byteArray := make([]byte, file.Size())
+	_, readErr := file.Read(byteArray)
+	if readErr != nil {
+		return readErr, ""
+	}
+	closeErr := file.Close()
+	if closeErr != nil {
+		return closeErr, ""
+	}
+
+	return nil, string(byteArray)
+}
+
+func (m *BlogsDAO) Mock_Success_Insert(blog *models.BlogJson) error {
 	return nil
+}
+
+func (m *BlogsDAO) Mock_Failure_Insert(blog *models.BlogJson) error {
+	return errors.New("Insertion failed")
 }

@@ -11,27 +11,39 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
+var blogsDAO dao.BlogsDAO
+
 func GetBlogs(c echo.Context) (err error) {
 	username := c.Param("username")
-	var blogsDAO dao.BlogsDAO
+
 	if err, _ := blogsDAO.Find(username); err != nil {
-		return err
+		return c.String(http.StatusInternalServerError, err.Error())
 	}
 
 	_, blogs := blogsDAO.Find(username)
 	return c.JSON(http.StatusOK, blogs)
 }
 
+func GetBlogById(c echo.Context) (err error) {
+	id := c.Param("id")
+	err, fileBytes := blogsDAO.RetriveImage(id)
+
+	if err != nil {
+		return c.String(http.StatusInternalServerError, err.Error())
+	}
+
+	return c.String(http.StatusOK, fileBytes)
+}
+
 func PostBlogs(c echo.Context) (err error) {
 	blog := &models.BlogJson{ID: bson.NewObjectId()}
 
 	if err = c.Bind(blog); err != nil {
-		return
+		return c.String(http.StatusInternalServerError, err.Error())
 	}
 
-	var blogsDAO dao.BlogsDAO
 	if err = blogsDAO.Insert(blog); err != nil {
-		return
+		return c.String(http.StatusInternalServerError, err.Error())
 	}
 
 	return c.JSON(http.StatusCreated, blog)

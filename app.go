@@ -21,8 +21,12 @@ func init() {
 
 func main() {
 	e := echo.New()
-
+	//GET all the blogs by username
 	e.GET("/blogs/:username", handlers.GetBlogs)
+
+	//GET one blog by bson id
+	e.GET("/blog/:id", handlers.GetBlogById)
+
 	e.POST("/blogs", handlers.PostBlogs)
 
 	//TODO: Add more APIs for blogs

@@ -1,11 +1,11 @@
 package handlersTest
 
 import (
+	"go-blogs-webapp/main/handlers"
 	"net/http"
 	"net/http/httptest"
 	"testing"
 
-	"../../main/handlers"
 	"github.com/labstack/echo"
 	"github.com/stretchr/testify/assert"
 )
