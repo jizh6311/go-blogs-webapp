@@ -38,11 +38,16 @@ func GetBlogById(c echo.Context) (err error) {
 func PostBlogs(c echo.Context) (err error) {
 	blog := &models.BlogJson{ID: bson.NewObjectId()}
 
+	file, err := c.FormFile("file")
+	if err != nil {
+		return c.String(http.StatusInternalServerError, err.Error())
+	}
+
 	if err = c.Bind(blog); err != nil {
 		return c.String(http.StatusInternalServerError, err.Error())
 	}
 
-	if err = blogsDAO.Insert(blog); err != nil {
+	if err = blogsDAO.Insert(blog, file); err != nil {
 		return c.String(http.StatusInternalServerError, err.Error())
 	}
 

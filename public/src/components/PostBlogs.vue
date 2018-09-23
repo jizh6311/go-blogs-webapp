@@ -7,33 +7,50 @@
     >
       <div class="row">
         <label for="name">Your Name:</label>
-        <input type="text" v-message="username" name="name" placeholder="Show me your name"></input>
+        <input type="text" v-model="username" name="name" placeholder="Show me your name"></input>
       </div>
       <div class="row">
         <label for="description">Description:</label>
-        <textarea id="description" v-message="description" type="text" name="description" placeholder="Add some notes"></textarea>
+        <textarea id="description" v-model="description" type="text" name="description" placeholder="Add some notes"></textarea>
       </div>
       <div class="row">
-        <input type="file" id="selectFile" ref="file" v-on:change="changeImagePath()">
+        <input type="file" id="image" ref="image" v-on:change="handleImageUpload()"/>
       </div>
       <div>
-        <button id="postButton" type="button">Post Blogs</button>
+        <button id="postButton" v-on:click="postBlog" type="button">Post Blogs</button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'PostBlogs',
-  data: {
-    username: null,
-    image: null,
-    description: null
-  },
   methods: {
-    changeImagePath () {
-      this.image = this.$refs.file.files[0];
+    handleImageUpload () {
+      this.file = this.$refs.image.files[0]
+    },
+
+    postBlog () {
+      let formData = new FormData()
+      formData.append('file', this.file)
+      formData.append('Username', this.username)
+      formData.append('Description', this.description)
+      axios.post('/blogs',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      ).then(function () {
+        console.log('Image Loaded successfully!')
+      }).catch(function () {
+        console.log('Image Loaded unsuccessfully!')
+      })
     }
   }
 }

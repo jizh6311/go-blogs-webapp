@@ -1,10 +1,13 @@
 package dao
 
 import (
+	"bytes"
 	"errors"
+	"fmt"
 	"go-blogs-webapp/main/models"
-	"io/ioutil"
+	"io"
 	"log"
+	"mime/multipart"
 	"time"
 
 	mgo "gopkg.in/mgo.v2"
@@ -31,9 +34,9 @@ func (m *BlogsDAO) Connect() {
 	db = session.DB(m.Database)
 }
 
-func (m *BlogsDAO) Insert(blog *models.BlogJson) error {
+func (m *BlogsDAO) Insert(blog *models.BlogJson, file *multipart.FileHeader) error {
 	blog.PostDate = time.Now()
-	uploadErr := UploadImage(blog)
+	uploadErr := UploadImage(blog, file)
 	if uploadErr != nil {
 		return uploadErr
 	}
@@ -44,23 +47,36 @@ func (m *BlogsDAO) Insert(blog *models.BlogJson) error {
 	return err
 }
 
-func UploadImage(blog *models.BlogJson) error {
+func UploadImage(blog *models.BlogJson, multipartFile *multipart.FileHeader) error {
 	file, createErr := db.GridFS("fs").Create(blog.ID.Hex() + ".jpg")
 	if createErr != nil {
+		fmt.Println("Create error message: " + createErr.Error())
 		return createErr
 	}
-	fileBytes, readErr := ioutil.ReadFile(blog.Image)
-	if readErr != nil {
+
+	src, err := multipartFile.Open()
+	if err != nil {
+		fmt.Println("Open error message: " + err.Error())
+		return err
+	}
+	defer src.Close()
+
+	readBuffer := bytes.NewBuffer(nil)
+	if _, readErr := io.Copy(readBuffer, src); readErr != nil {
+		fmt.Println("Read error message: " + readErr.Error())
 		return readErr
 	}
-	_, writeErr := file.Write(fileBytes)
+
+	_, writeErr := file.Write(readBuffer.Bytes())
 	if writeErr != nil {
+		fmt.Println("Write error message: " + writeErr.Error())
 		return writeErr
 	}
 
 	closeErr := file.Close()
 	if closeErr != nil {
-		return writeErr
+		fmt.Println("Close error message: " + closeErr.Error())
+		return closeErr
 	}
 
 	return nil
