@@ -7,7 +7,7 @@
     >
       <div class="row">
         <label for="name">Your Name:</label>
-        <input type="text" v-model="username" name="name" placeholder="Show me your name"></input>
+        <input type="text" v-model="username" name="name" placeholder="Show me your name" />
       </div>
       <div class="row">
         <label for="description">Description:</label>
@@ -42,14 +42,13 @@ export default {
         formData,
         {
           headers: {
-            'Content-Type': 'application/json',
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'application/json, multipart/form-data'
           }
         }
       ).then(function () {
         console.log('Image Loaded successfully!')
       }).catch(function () {
-        console.log('Image Loaded unsuccessfully!')
+        console.error('Image Loaded unsuccessfully!')
       })
     }
   }

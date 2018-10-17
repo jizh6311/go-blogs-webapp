@@ -3,26 +3,26 @@
     <v-container>
       <v-layout row wrap justify-space-around>
         <v-flex xs12 md8>
-          <div v-for="mockBlog in mockBlogs">
+          <div v-for="oneBlog in blogs">
             <v-card class="my-3" hover>
               <v-card-media
                 class="white--text"
                 height="170px"
-                :src="mockBlog.imgUrl"
+                :src="imageSrc(oneBlog.id)"
               >
                 <v-container fill-height fluid>
                   <v-layout>
                     <v-card-text>
-                      {{ mockBlog.Username }}
+                      {{ oneBlog.Username }}
                     </v-card-text>
                   </v-layout>
                 </v-container>
               </v-card-media>
               <v-card-text>
-                {{ mockBlog.Description }}
+                {{ oneBlog.Description }}
               </v-card-text>
               <v-card-text>
-                {{ mockBlog.PostDate }}
+                {{ oneBlog.PostDate }}
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -37,34 +37,28 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'ViewBlogs',
+  methods: {
+    imageSrc (blogID) {
+      return 'http://localhost:8081/blog/' + blogID
+    }
+  },
   data () {
     return {
-      mockBlogs: [
-        {
-          'id': '5ba80c897a884e1df38ecfe1',
-          'Username': 'Mock_User_1',
-          'Description': 'Mock_Description_1: Before I sign off for the night, I am curious, ' +
-            'does anyone have any upsets they are picking from this weekend games?',
-          'PostDate': '2018-09-23T17:58:33.347-04:00'
-        },
-        {
-          'id': '5ba80c897a884e1df38ecfe1',
-          'Username': 'Mock_User_2',
-          'Description': 'Mock_Description_2: I really wanted to go with the Broncos over the Patriots,' +
-            'but punked out at the end and just picked Miami to cover. So the Browns over the Raiders, ' +
-            'on the road, is my upset of the week. Anyone feeling bold?',
-          'PostDate': '2018-09-24T17:58:33.347-04:00'
-        },
-        {
-          'id': '5ba80c897a884e1df38ecfe1',
-          'Username': 'Mock_User_3',
-          'Description': 'Mock_Description_3: What do I have to say here',
-          'PostDate': '2018-09-24T17:58:33.347-04:00'
-        }
-      ]
+      blogs: null
     }
+  },
+  mounted () {
+    axios.get('/blogs/jianzhang')
+      .then((response) => {
+        this.blogs = response.data
+      })
+      .catch(() => {
+        console.error('Load blog data unsuccessfully!')
+      })
   }
 }
 </script>
