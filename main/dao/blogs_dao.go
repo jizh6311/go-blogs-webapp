@@ -88,6 +88,22 @@ func (m *BlogsDAO) Find(username string) (error, []*models.BlogMeta) {
 	return err, blogs
 }
 
+func (m *BlogsDAO) Delete(ID string) (error, string) {
+	err := db.C(COLLECTION).RemoveId(bson.ObjectIdHex(ID))
+
+	if err != nil {
+		return err, fmt.Sprintf("Error occurred when deleting document by ID: %s", ID)
+	}
+
+	fileErr := db.GridFS("fs").Remove(ID + ".jpg")
+
+	if fileErr != nil {
+		return fileErr, fmt.Sprintf("Error occurred when deleting file in GridFS by ID: %s", ID)
+	}
+
+	return nil, fmt.Sprintf("Successfully deleted document by ID: %s", ID)
+}
+
 func (m *BlogsDAO) RetriveImage(ID string) (error, string) {
 	//TODO: Able to open multiple types of files
 	file, findErr := db.GridFS("fs").Open(ID + ".jpg")

@@ -38,7 +38,7 @@ export default {
       formData.append('file', this.file)
       formData.append('Username', this.username)
       formData.append('Description', this.description)
-      axios.post('/blogs',
+      axios.post('http://localhost:8081/blog',
         formData,
         {
           headers: {
@@ -46,7 +46,8 @@ export default {
           }
         }
       ).then(function () {
-        console.log('Image Loaded successfully!')
+        location.reload()
+        alert('Image Loaded successfully!')
       }).catch(function () {
         console.error('Image Loaded unsuccessfully!')
       })

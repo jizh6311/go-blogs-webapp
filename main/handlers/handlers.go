@@ -54,6 +54,17 @@ func PostBlogs(c echo.Context) (err error) {
 	return c.JSON(http.StatusCreated, blog)
 }
 
+func DeleteBlog(c echo.Context) (err error) {
+	id := c.Param("id")
+	err, deleteMessage := blogsDAO.Delete(id)
+
+	if err != nil {
+		return c.String(http.StatusInternalServerError, deleteMessage)
+	}
+
+	return c.String(http.StatusOK, deleteMessage)
+}
+
 func Mock_Get_Success_Blogs(c echo.Context) (err error) {
 	return c.JSON(http.StatusOK, "testLogs")
 }

@@ -8,6 +8,7 @@ import (
 	"go-blogs-webapp/main/handlers"
 
 	"github.com/labstack/echo"
+	"github.com/labstack/echo/middleware"
 )
 
 func init() {
@@ -21,17 +22,18 @@ func init() {
 
 func main() {
 	e := echo.New()
-	//GET all the blogs by username
+
+	// ALlow origin cross
+	e.Use(middleware.CORS())
+
+	// APIs below:
 	e.GET("/blogs/:username", handlers.GetBlogs)
-
-	//GET one blog by bson id
 	e.GET("/blog/:id", handlers.GetBlogById)
-
-	e.POST("/blogs", handlers.PostBlogs)
+	e.POST("/blog", handlers.PostBlogs)
+	e.DELETE("/blog/:id", handlers.DeleteBlog)
 
 	//TODO: Add more APIs for blogs
 	// e.PUT("/blogs", handlers.PutBlogs(db))
-	// e.DELETE("/blogs/:id", handlers.DeleteBlogs(db))
 
 	//Use npm and go CLI to start frontend and backend services seperately.
 	//Then use proxy in package.json

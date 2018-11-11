@@ -26,7 +26,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn flat class="blue--text">Delete</v-btn>
+                <v-btn flat class="blue--text" v-on:click.native="deleteBlog(oneBlog.id)">Delete</v-btn>
               </v-card-actions>
             </v-card>
           </div>
@@ -44,6 +44,17 @@ export default {
   methods: {
     imageSrc (blogID) {
       return 'http://localhost:8081/blog/' + blogID
+    },
+
+    deleteBlog (blogID) {
+      axios.delete(`http://localhost:8081/blog/${blogID}`)
+        .then((response) => {
+          console.info(`Succeeded to delete blog by ID: ${blogID}`)
+          location.reload()
+        })
+        .catch(() => {
+          console.error(`Failed to delete blog by ID: ${blogID}`)
+        })
     }
   },
   data () {
