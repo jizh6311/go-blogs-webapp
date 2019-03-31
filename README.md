@@ -38,3 +38,7 @@ https://vuejs.org
 1. Editor: Go-plus in Atom is recommended. GoLand in Intellij could also be a good option.
 2. Backend API call: curl command or Postman software
 3. Webpack is being used in the npm project. The changes made can be seen on the browser immediately 
+
+## Add 996.ICU badge to support those bros in my country:
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
+[![LICENSE](https://img.shields.io/badge/license-NPL%20(The%20996%20Prohibited%20License)-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
