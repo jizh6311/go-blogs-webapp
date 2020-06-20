@@ -19,7 +19,7 @@ This is a web app written in Go echo framework for backend and VueJS for fronten
 
 ## Project Setup
 1. Clone this project under <Your_GOPATH>/src/go-blogs-webapp. Run `go install` to install all package dependencies
-2. Run `./start-mongod.sh` to start local MongoDB server
+2. Run `sudo ./start-mongod.sh` to start local MongoDB server
 3. Under <project_directory>, run ```go run app.go``` to start the web app backend on localhost:8081
 4. Under <project_directory>/public, run ```npm run dev``` to start the npm project on port 8080. The web services on 8081 will be available on 8080 as well because of the proxy
 5. Go to <project_directory>/test and run ```go test ./...``` can execute all unit tests. Run ```go test``` under each test folder can execute every single test class
