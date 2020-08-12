@@ -3,3 +3,4 @@ pkg/
 vendor/
 
 .idea/
+yarn-error.log/
