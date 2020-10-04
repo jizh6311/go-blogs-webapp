@@ -18,16 +18,16 @@ describe('ViewBlogs.vue', () => {
   it('should render correct contents on view blog page', () => {
     var mockData = [
       {
-        "id": "5be895136cface1b0010a6d7",
-        "Username": "jianzhang",
-        "Description": "This is the first sample",
-        "PostDate": "2018-11-11T15:46:11.171-05:00"
+        'id': '5be895136cface1b0010a6d7',
+        'Username': 'jianzhang',
+        'Description': 'This is the first sample',
+        'PostDate': '2018-11-11T15:46:11.171-05:00'
       },
       {
-        "id": "5be895136cface1b0010a6d8",
-        "Username": "jianzhang",
-        "Description": "This is the second sample",
-        "PostDate": "2018-11-11T15:46:11.171-05:00"
+        'id': '5be895136cface1b0010a6d8',
+        'Username': 'jianzhang',
+        'Description': 'This is the second sample',
+        'PostDate': '2018-11-11T15:46:11.171-05:00'
       }
     ]
 
